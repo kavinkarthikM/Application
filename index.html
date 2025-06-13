@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Application Card</title>
   <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet" />
-  <style>
+  <link rel="icon" type="image/png" href="/img/favicon.png" />
+  <div id="liveClock" class="live-clock"></div>
+
+    <style>
     body {
       background-color: #f0f0f0; /* light gray background around the card */
       font-family: 'PT Sans', sans-serif;
@@ -33,6 +36,24 @@
     .card p {
       margin: 12px 0;
     }
+
+.live-clock {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: 'PT Sans', sans-serif;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  font-size: 16px;
+  z-index: 1000;
+  user-select: none;
+}
+
+
+
   </style>
 </head>
 <body>
@@ -45,5 +66,29 @@
     <p>Thank you for considering my application. I look forward to the possibility of contributing to your team.</p>
     <p>Best regards,<br />Kavin Karthik M</p>
   </div>
+
+
+
+<script>
+  function updateClock() {
+    const clock = document.getElementById('liveClock');
+    const now = new Date();
+
+    // Format date and time
+    const options = { 
+      weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' 
+    };
+    const dateString = now.toLocaleDateString(undefined, options);
+
+    const timeString = now.toLocaleTimeString(undefined, { hour12: false });
+
+    clock.textContent = `${dateString}  |  ${timeString}`;
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock(); // initial call to display right away
+</script>
+
+
 </body>
 </html>
